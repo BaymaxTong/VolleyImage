@@ -35,7 +35,7 @@ import com.android.volley.VolleyError;
  *
  * The simple way to use this class is to call {@link ImageLoader#get(String, ImageListener)}
  * and to pass in the default image listener provided by
- * {@link ImageLoader#getImageListener(ImageView, int, int)}. Note that all function calls to
+ * {@link ImageLoader#(ImageView, int, int)}. Note that all function calls to
  * this class must be made from the main thead, and all responses will be delivered to the main
  * thread as well.
  */

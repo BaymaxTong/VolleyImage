@@ -6,15 +6,13 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
-
 import com.baymax.volleyimage.R;
-
 import java.nio.ByteBuffer;
 
 
 /**
- * read image from any where
- * Created by 90Chris on 2016/5/5.
+ * 从缓冲区异步读取数据流
+ * Created by baymax on 2016/5/16.
  */
 public class ReadImageTask extends AsyncTask<String, Integer, ByteBuffer> {
     private final int DEFAULT_IMAGE_LOADING = R.drawable.image_loading;
@@ -48,8 +46,7 @@ public class ReadImageTask extends AsyncTask<String, Integer, ByteBuffer> {
     protected void onPostExecute(ByteBuffer byteBuffer) {
         if ( byteBuffer != null ) {
             byte[] bytes = byteBuffer.array();
-
-            // if it's gif, show as gif
+            // 判断是否为GIF图片，如果是则加载
             if ( LoadGif.isGif(mImageView, bytes) )
                 return;
 

@@ -5,14 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
-
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 
 import com.android.volley.VolleyError;
 
 /**
- *
+ * 加载图片监听类
  * Created by baymax on 2016/5/16.
  */
 public class GifImageListener implements ImageLoader.ImageListener {
@@ -43,7 +42,7 @@ public class GifImageListener implements ImageLoader.ImageListener {
         ByteBuffer byteBuffer = response.getBitmap();
         if ( null != byteBuffer ) {
             byte[] bytes = byteBuffer.array();
-            // if it's gif, show as gif
+            // 判断是否为GIF图片，如果是则加载
             if ( LoadGif.isGif(mImageView, bytes) ) return;
 
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);

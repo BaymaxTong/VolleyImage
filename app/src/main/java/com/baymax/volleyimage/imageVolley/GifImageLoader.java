@@ -6,12 +6,13 @@ import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 /**
+ * 配合LruCache和AsyncTask实现缓存与读取显示图片
  * Created by baymax on 2016/5/16.
  */
 public class GifImageLoader {
     private ImageLoader mImageLoader;
     private Context mContext;
-    private final static int CACHE_SIZE = 1024 * 1024 * 20;
+    private final static int CACHE_SIZE = 1024 * 1024 * 10;   //缓存大小设置
     private LruImageCache mLruImageCache;
     private ReadImageTask mReadImageTask;
     private int mMaxSize = 0;

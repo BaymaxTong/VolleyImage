@@ -1,5 +1,7 @@
 package com.baymax.volleyimage.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 
 import com.baymax.volleyimage.R;
 import com.baymax.volleyimage.imageVolley.GifVolley;
+import com.baymax.volleyimage.imageVolley.LoadGif;
 import com.baymax.volleyimage.net.RequestImageLoader;
 import com.baymax.volleyimage.utils.Images;
 
@@ -38,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
     public void loadData(){
         GifVolley.with(this).getImageLoader().load("http://7xlkhg.com2.z0.glb.qiniucdn.com/qbi_cry.gif").into(image1);
         //RequestImageLoader.loadImage(Images.imageThumbUrls[0],image1);
-        RequestImageLoader.loadImage(Images.imageThumbUrls[1],image2);
+        // 获取位图
+//        Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.splash);
+//        image2.setImageBitmap(LoadGif.toRoundBitmap(bmp));
+        //RequestImageLoader.loadImage(Images.imageThumbUrls[1],image2);
         RequestImageLoader.loadImage(Images.imageThumbUrls[2],image3);
         RequestImageLoader.loadImage(Images.imageThumbUrls[3],image4);
     }
