@@ -28,6 +28,11 @@ public class GifImageLoader {
         return this;
     }
 
+    public GifImageLoader loadCircle(String url,boolean isCircle) {
+        mReadImageTask = new ReadImageTask(mContext, mLruImageCache, mImageLoader, url, isCircle);
+        return this;
+    }
+
     public void into(ImageView imageView) {
         mReadImageTask.setView(imageView);
         mReadImageTask.setSize(mMaxSize);

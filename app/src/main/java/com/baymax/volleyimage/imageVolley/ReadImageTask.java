@@ -26,12 +26,21 @@ public class ReadImageTask extends AsyncTask<String, Integer, ByteBuffer> {
     private ImageLoader mImageLoader;
     private Context mContext;
     private int mMaxSize;
+    private boolean isCircle = false;
 
     public ReadImageTask(Context context, ImageLoader.ImageCache imageCache, ImageLoader imageLoader, String imageUrl) {
         mImageUrl = imageUrl;
         mImageCache = imageCache;
         mImageLoader = imageLoader;
         mContext = context;
+    }
+
+    public ReadImageTask(Context context, ImageLoader.ImageCache imageCache, ImageLoader imageLoader, String imageUrl, boolean isCircle) {
+        mImageUrl = imageUrl;
+        mImageCache = imageCache;
+        mImageLoader = imageLoader;
+        mContext = context;
+        this.isCircle = isCircle;
     }
 
     @Override
@@ -51,11 +60,16 @@ public class ReadImageTask extends AsyncTask<String, Integer, ByteBuffer> {
                 return;
 
             Bitmap image = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            mImageView.setImageBitmap(image);
+            //判断是否为圆形图片，如果是则加载
+            if(isCircle){
+                mImageView.setImageBitmap(LoadGif.toRoundBitmap(image));
+            }else{
+                mImageView.setImageBitmap(image);
+            }
         } else if ( mImageUrl == null || mImageUrl.isEmpty() || !mImageUrl.startsWith("http") ) {
             mImageView.setImageDrawable(mContext.getResources().getDrawable(mErrorImage));
         } else {
-            GifImageListener listener = new GifImageListener(mContext, mImageView, mImageCache);
+            GifImageListener listener = new GifImageListener(mContext, mImageView, mImageCache , isCircle);
             listener.setDefaultImage(mLoadingImage, mErrorImage);
             listener.setMaxSize(mMaxSize);
             mImageLoader.get(mImageUrl, listener);

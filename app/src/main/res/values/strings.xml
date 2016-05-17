@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="beauty_image">美女图片</string>
+    <string name="original_image">原始图片</string>
+    <string name="gif_image">Gif 图片</string>
+    <string name="circle_image">圆形图片</string>
 </resources>

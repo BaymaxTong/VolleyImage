@@ -21,11 +21,13 @@ public class GifImageListener implements ImageLoader.ImageListener {
     private int mMaxSize = 0;
     private Context mContext;
     private ImageLoader.ImageCache mImageCache;
+    private boolean isCircle;
 
-    protected GifImageListener(Context context, ImageView imageView, ImageLoader.ImageCache imageCache) {
+    protected GifImageListener(Context context, ImageView imageView, ImageLoader.ImageCache imageCache ,boolean isCircle) {
         this.mImageView = imageView;
         mContext = context;
         mImageCache = imageCache;
+        this.isCircle = isCircle;
     }
 
     protected void setMaxSize(int size) {
@@ -43,7 +45,8 @@ public class GifImageListener implements ImageLoader.ImageListener {
         if ( null != byteBuffer ) {
             byte[] bytes = byteBuffer.array();
             // 判断是否为GIF图片，如果是则加载
-            if ( LoadGif.isGif(mImageView, bytes) ) return;
+            if ( LoadGif.isGif(mImageView, bytes) )
+                return;
 
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
@@ -63,7 +66,12 @@ public class GifImageListener implements ImageLoader.ImageListener {
                     bitmap = Bitmap.createScaledBitmap(bitmap, scaleWidth, scaleHeight, false);
                 }
             }
-            mImageView.setImageBitmap(bitmap);
+            //判断是否为圆形图片，如果是则加载
+            if(isCircle){
+                mImageView.setImageBitmap(LoadGif.toRoundBitmap(bitmap));
+            }else{
+                mImageView.setImageBitmap(bitmap);
+            }
 
             //cache image
             ByteArrayOutputStream stream = new ByteArrayOutputStream();

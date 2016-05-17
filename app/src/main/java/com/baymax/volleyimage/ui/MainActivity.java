@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void loadData(){
-        GifVolley.with(this).getImageLoader().load("http://7xlkhg.com2.z0.glb.qiniucdn.com/qbi_cry.gif").into(image1);
-        //RequestImageLoader.loadImage(Images.imageThumbUrls[0],image1);
-        // 获取位图
-//        Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.splash);
-//        image2.setImageBitmap(LoadGif.toRoundBitmap(bmp));
-        //RequestImageLoader.loadImage(Images.imageThumbUrls[1],image2);
-        RequestImageLoader.loadImage(Images.imageThumbUrls[2],image3);
-        RequestImageLoader.loadImage(Images.imageThumbUrls[3],image4);
+        //加载GIF图片
+        GifVolley.with(this).getImageLoader().load(Images.imageThumbUrls[0]).into(image1);
+        //加载圆形图片
+        GifVolley.with(this).getImageLoader().loadCircle(Images.imageThumbUrls[2],true).into(image2);
+        //加载普通图片
+        GifVolley.with(this).getImageLoader().load(Images.imageThumbUrls[3]).into(image4);
+        //加载普通图片
+        GifVolley.with(this).getImageLoader().load(Images.imageThumbUrls[2]).into(image3);
     }
 
     @Override
